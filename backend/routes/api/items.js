@@ -5,6 +5,7 @@ var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
+const { placeholder } = require("../../../frontend/public/placeholder.png");
 
 // Preload item objects on routes with ':item'
 router.param("item", function (req, res, next, slug) {
@@ -182,6 +183,10 @@ router.put("/:item", auth.required, function (req, res, next) {
 
       if (typeof req.body.item.description !== "undefined") {
         req.item.description = req.body.item.description;
+      }
+
+      if (typeof req.body.item.image === "undefined") {
+        placeholder = req.body.item.image;
       }
 
       if (typeof req.body.item.image !== "undefined") {
