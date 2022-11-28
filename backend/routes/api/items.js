@@ -5,7 +5,6 @@ var Comment = mongoose.model("Comment");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
-const { placeholder } = require("../../../frontend/public/placeholder.png");
 
 // Preload item objects on routes with ':item'
 router.param("item", function (req, res, next, slug) {
