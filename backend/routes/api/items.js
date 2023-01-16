@@ -36,6 +36,20 @@ router.param("comment", function (req, res, next, id) {
     .catch(next);
 });
 
+router.param("item", function (req, res, next, slug) {
+  Item.findOne(title)
+    .then(function (item) {
+      if (!item) {
+        return res.sendStatus(404);
+      }
+
+      req.item = item;
+
+      return next();
+    })
+    .catch(next);
+});
+
 router.get("/", auth.optional, function (req, res, next) {
   var query = {};
   var limit = 100;
